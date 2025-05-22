@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %} Peliculas {% endblock %}
+
+{% block contenido %}
+
+{% for pelicula in peliculas %}
+<div class="card mb-3" style="max-width: 100%;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ pelicula.imagen.url }}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ pelicula.titulo }}</h5>
+        <p class="card-text">{{ pelicula.genero }}</p>
+        <p class="card-text">{{ pelicula.fecha_estreno }}</p>
+        <p class="card-text">{{ pelicula.sipnosis }}</p>
+        <a name="" id="" class="btn btn-info" href="{% url 'editar' pelicula.id %}" role="button">Editar</a>
+        <a name="" id="" class="btn btn-danger" href="{% url 'eliminar' pelicula.id %}" role="button">Borrar</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}

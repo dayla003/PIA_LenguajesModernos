@@ -1,0 +1,28 @@
+services:
+  db:
+    platform: linux/x86_64
+    image: mysql:8.0.36
+    restart: always
+    environment:
+      MYSQL_DATABASE: peliculasdb
+      MYSQL_USER: day
+      MYSQL_PASSWORD: mariana
+      MYSQL_ROOT_PASSWORD: mariana
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: on-failure
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:
