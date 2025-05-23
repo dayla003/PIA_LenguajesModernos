@@ -15,7 +15,7 @@ services:
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: /wait-for-db.sh python manage.py runserver 0.0.0.0:8000
     restart: on-failure
     volumes:
       - .:/app
@@ -26,3 +26,4 @@ services:
 
 volumes:
   mysql_data:
+
